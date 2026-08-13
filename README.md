@@ -2,7 +2,7 @@
 
 MACDancer 是一个面向 macOS 的 MAC 地址隐私工具。它以标准主窗口应用的方式运行：打开后直接显示接口状态和后台服务状态，菜单栏图标默认开启，也可在设置中关闭。
 
-项目仓库名为 `MACLiar`，应用与 Xcode 工程名称为 **MACDancer**。
+项目仓库、应用与 Xcode 工程名称均为 **MACDancer**。
 
 > **重要：** 修改 MAC 地址可能导致网络立即中断，也可能被 DHCP、NAC、MAC 白名单或企业网络策略拒绝。本项目不会承诺任意网络都能接受新地址。请先阅读本文的安全限制，并只在你能够承受短暂断网的场景下执行手动修改。
 
@@ -40,7 +40,7 @@ MACDancer 是一个面向 macOS 的 MAC 地址隐私工具。它以标准主窗�
 ### 1. 获取代码
 
 ```sh
-git clone https://github.com/Jaaayden/MACLiar.git MACDancer
+git clone https://github.com/Jaaayden/MACDancer.git
 cd MACDancer
 ```
 
@@ -80,6 +80,8 @@ DEVELOPMENT_TEAM = YOUR_TEAM_ID
 3. 如显示“需要批准”，点击“打开系统设置”，在系统设置的 Login Items / Background Items（不同 macOS 版本文字略有不同）中允许 MACDancer。
 4. 回到应用，状态应显示 XPC 可达、daemon 健康、协议版本匹配。
 5. 若服务已注册但无响应，可点击“修复连接”。它会有序地重新注册服务；不会恢复 MAC、删除策略或清空历史。
+
+从较早的源码构建升级后，也建议点击一次“修复连接”，让 macOS 重新加载本次构建中嵌入的 daemon；否则已经运行的旧 daemon 进程可能继续提供旧行为，直到服务重启。
 
 “卸载后台服务”仅注销 daemon，默认保留当前 MAC、策略、待处理配置和历史记录，也不会隐式恢复硬件地址。需要恢复时，请先在接口的“恢复…”面板中明确选择目标。
 

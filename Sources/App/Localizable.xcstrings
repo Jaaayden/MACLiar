@@ -919,6 +919,26 @@
     "English" : {
 
     },
+    "error.wifi_associated_write_rejected.message" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "macOS 或 Wi-Fi 驱动未接受在网络保持连接时修改 MAC。MACDancer 没有主动断开或重新连接 Wi-Fi。请先断开 Wi-Fi，等待接口显示为未关联，然后重试。"
+          }
+        }
+      }
+    },
+    "error.wifi_associated_write_rejected.title" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wi-Fi 连接时无法修改 MAC"
+          }
+        }
+      }
+    },
     "history.clear.action" : {
       "extractionState" : "stale",
       "localizations" : {

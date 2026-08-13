@@ -3,11 +3,16 @@ import XCTest
 
 @objc private protocol TestPayloadEchoProtocol {
   func echo(_ payload: MDSecurePayload, reply: @escaping (MDSecurePayload?, NSError?) -> Void)
+  func fail(reply: @escaping (NSError?) -> Void)
 }
 
 private final class TestPayloadEchoService: NSObject, TestPayloadEchoProtocol {
   func echo(_ payload: MDSecurePayload, reply: @escaping (MDSecurePayload?, NSError?) -> Void) {
     reply(payload, nil)
+  }
+
+  func fail(reply: @escaping (NSError?) -> Void) {
+    reply(.macDancer(MACDancerError.associatedWiFiWriteRejected))
   }
 }
 
@@ -670,6 +675,45 @@ final class MACDancerCoreTests: XCTestCase {
     XCTAssertNil(replyError)
     XCTAssertEqual(decoded?.operationID, request.operationID)
     XCTAssertEqual(decoded?.request, request.request)
+  }
+
+  func testAnonymousXPCListenerPreservesUserFacingDaemonError() throws {
+    let listener = NSXPCListener.anonymous()
+    let delegate = TestPayloadEchoDelegate()
+    listener.delegate = delegate
+    listener.activate()
+    defer { listener.invalidate() }
+
+    let connection = NSXPCConnection(listenerEndpoint: listener.endpoint)
+    connection.remoteObjectInterface = TestPayloadEchoDelegate.interface()
+    connection.activate()
+    defer { connection.invalidate() }
+
+    let expectation = expectation(description: "anonymous XPC error reply")
+    var receivedError: NSError?
+    let proxy = try XCTUnwrap(
+      connection.remoteObjectProxyWithErrorHandler { error in
+        receivedError = error as NSError
+        expectation.fulfill()
+      } as? TestPayloadEchoProtocol
+    )
+    proxy.fail { error in
+      receivedError = error
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 2)
+    let error = try XCTUnwrap(receivedError)
+    XCTAssertEqual(error.domain, MACDancerConstants.appIdentifier)
+    XCTAssertEqual(error.code, MACDancerError.associatedWiFiWriteRejected.xpcErrorCode)
+    XCTAssertEqual(
+      error.userInfo[MACDancerConstants.errorKindUserInfoKey] as? String,
+      MACDancerRemoteErrorKind.associatedWiFiWriteRejected.rawValue
+    )
+    XCTAssertEqual(
+      error.localizedDescription,
+      MACDancerError.associatedWiFiWriteRejected.localizedDescription
+    )
   }
 
   func testSnapshotRevisionTrackerRejectsOldSameInstanceAndAcceptsRestart() {

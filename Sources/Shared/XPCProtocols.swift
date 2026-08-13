@@ -70,7 +70,24 @@ protocol MACDancerDaemonProtocol {
 
 extension NSError {
   static func macDancer(_ error: Error) -> NSError {
-    if let value = error as NSError? { return value }
-    return NSError(domain: MACDancerConstants.appIdentifier, code: 1, userInfo: [NSLocalizedDescriptionKey: String(describing: error)])
+    let bridged = error as NSError
+    var userInfo = bridged.userInfo
+    // A Swift LocalizedError can compute its description without storing it in
+    // userInfo. That computation is unavailable after crossing into the other
+    // Swift module, so materialize the description before replying over XPC.
+    userInfo[NSLocalizedDescriptionKey] = error.localizedDescription
+
+    guard let macDancerError = error as? MACDancerError else {
+      return NSError(domain: bridged.domain, code: bridged.code, userInfo: userInfo)
+    }
+    if case .associatedWiFiWriteRejected = macDancerError {
+      userInfo[MACDancerConstants.errorKindUserInfoKey] =
+        MACDancerRemoteErrorKind.associatedWiFiWriteRejected.rawValue
+    }
+    return NSError(
+      domain: MACDancerConstants.appIdentifier,
+      code: macDancerError.xpcErrorCode,
+      userInfo: userInfo
+    )
   }
 }

@@ -488,7 +488,7 @@ final class AppModel: ObservableObject {
         self.applyDaemonSnapshot(try await operation())
         if crossCheck { self.refresh() }
       } catch {
-        self.presentAlert(title: title, message: error.localizedDescription)
+        self.presentOperationError(fallbackTitle: title, error: error)
       }
     }
   }
@@ -702,6 +702,41 @@ final class AppModel: ObservableObject {
     alerts.append(newAlert)
     if alerts.count > 12 {
       alerts.removeFirst(alerts.count - 12)
+    }
+  }
+
+  private func presentOperationError(fallbackTitle: String, error: Error) {
+    let nsError = error as NSError
+    let kind = nsError.userInfo[MACDancerConstants.errorKindUserInfoKey] as? String
+    guard kind == MACDancerRemoteErrorKind.associatedWiFiWriteRejected.rawValue else {
+      presentAlert(title: fallbackTitle, message: error.localizedDescription)
+      return
+    }
+    presentAlert(
+      title: localizedAppString(
+        "error.wifi_associated_write_rejected.title",
+        "Unable to change the MAC while Wi-Fi is connected"
+      ),
+      message: localizedAppString(
+        "error.wifi_associated_write_rejected.message",
+        "macOS or the Wi-Fi driver did not accept the MAC change while this network is connected. MACDancer did not disconnect or reconnect Wi-Fi. Disconnect Wi-Fi, wait until the interface is no longer associated, then try again."
+      )
+    )
+  }
+
+  private func localizedAppString(_ key: String, _ defaultValue: String) -> String {
+    switch preferredLanguage {
+    case .english:
+      defaultValue
+    case .simplifiedChinese:
+      if let path = Bundle.main.path(forResource: "zh-Hans", ofType: "lproj"),
+         let bundle = Bundle(path: path) {
+        bundle.localizedString(forKey: key, value: defaultValue, table: nil)
+      } else {
+        defaultValue
+      }
+    case .system:
+      Bundle.main.localizedString(forKey: key, value: defaultValue, table: nil)
     }
   }
 }

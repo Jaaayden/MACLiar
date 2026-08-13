@@ -158,10 +158,10 @@ private final class DaemonXPCService: NSObject, MACDancerDaemonProtocol {
       coordinator.cancel(envelope) { result in
         switch result {
         case let .success(snapshot): self.encode(snapshot, reply: reply)
-        case let .failure(error): reply(nil, error as NSError)
+        case let .failure(error): reply(nil, .macDancer(error))
         }
       }
-    } catch { reply(nil, error as NSError) }
+    } catch { reply(nil, .macDancer(error)) }
   }
 
   func updateHistory(_ payload: MDSecurePayload, reply: @escaping (MDSecurePayload?, NSError?) -> Void) {
@@ -170,10 +170,10 @@ private final class DaemonXPCService: NSObject, MACDancerDaemonProtocol {
       coordinator.updateHistory(envelope) { result in
         switch result {
         case let .success(snapshot): self.encode(snapshot, reply: reply)
-        case let .failure(error): reply(nil, error as NSError)
+        case let .failure(error): reply(nil, .macDancer(error))
         }
       }
-    } catch { reply(nil, error as NSError) }
+    } catch { reply(nil, .macDancer(error)) }
   }
 
   func updateAutomation(_ payload: MDSecurePayload, reply: @escaping (MDSecurePayload?, NSError?) -> Void) {
@@ -182,10 +182,10 @@ private final class DaemonXPCService: NSObject, MACDancerDaemonProtocol {
       coordinator.updateAutomation(envelope) { result in
         switch result {
         case let .success(snapshot): self.encode(snapshot, reply: reply)
-        case let .failure(error): reply(nil, error as NSError)
+        case let .failure(error): reply(nil, .macDancer(error))
         }
       }
-    } catch { reply(nil, error as NSError) }
+    } catch { reply(nil, .macDancer(error)) }
   }
 
   private func snapshotReply(_ reply: @escaping (MDSecurePayload?, NSError?) -> Void) {
@@ -195,6 +195,9 @@ private final class DaemonXPCService: NSObject, MACDancerDaemonProtocol {
   private func validateOperation(_ result: Result<OperationResult, Error>) -> Result<Void, Error> {
     result.flatMap { operation in
       guard operation.state == .succeeded else {
+        if operation.failureReason == .associatedWiFiWriteRejected {
+          return .failure(MACDancerError.associatedWiFiWriteRejected)
+        }
         return .failure(MACDancerError.commandFailed(
           operation.message ?? "The daemon could not verify the requested MAC address."
         ))
@@ -215,15 +218,15 @@ private final class DaemonXPCService: NSObject, MACDancerDaemonProtocol {
         switch result {
         case .success:
           self.coordinator.snapshot { snapshot in self.encode(snapshot, reply: reply) }
-        case let .failure(error): reply(nil, error as NSError)
+        case let .failure(error): reply(nil, .macDancer(error))
         }
       }
-    } catch { reply(nil, error as NSError) }
+    } catch { reply(nil, .macDancer(error)) }
   }
 
   private func encode<T: Encodable>(_ value: T, reply: @escaping (MDSecurePayload?, NSError?) -> Void) {
     do { reply(try MDSecurePayload(value), nil) }
-    catch { reply(nil, error as NSError) }
+    catch { reply(nil, .macDancer(error)) }
   }
 
   private static func clientInterface() -> NSXPCInterface {

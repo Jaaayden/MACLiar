@@ -34,6 +34,7 @@ enum InterfacePolicy: Codable, Equatable, Sendable {
 enum HistorySource: String, Codable, Sendable { case generatedLocal, vendorCompatible, userSpecified, historyRestore }
 enum OperationKind: String, Codable, Sendable { case randomize, restoreHardware, restoreHistory, restoreSpecified, handoff, reconcile }
 enum OperationState: String, Codable, Sendable { case pending, running, succeeded, deferred, cancelled, failed }
+enum OperationFailureReason: String, Codable, Sendable { case associatedWiFiWriteRejected }
 
 struct HistoryEntry: Codable, Identifiable, Equatable, Sendable {
   var id: String { address.stringValue }
@@ -106,11 +107,12 @@ struct OperationResult: Codable, Identifiable, Equatable, Sendable {
   let startedAt: Date
   let completedAt: Date?
   let message: String?
+  let failureReason: OperationFailureReason?
   var deviceKey: String? = nil
 
   private enum CodingKeys: String, CodingKey {
     case id, interfaceID, kind, state, requestedAddress, observedAddress
-    case startedAt, completedAt, message, deviceKey
+    case startedAt, completedAt, message, failureReason, deviceKey
   }
 
   init(
@@ -123,6 +125,7 @@ struct OperationResult: Codable, Identifiable, Equatable, Sendable {
     startedAt: Date,
     completedAt: Date?,
     message: String?,
+    failureReason: OperationFailureReason? = nil,
     deviceKey: String? = nil
   ) {
     self.id = id
@@ -134,6 +137,7 @@ struct OperationResult: Codable, Identifiable, Equatable, Sendable {
     self.startedAt = startedAt
     self.completedAt = completedAt
     self.message = message
+    self.failureReason = failureReason
     self.deviceKey = deviceKey
   }
 
@@ -148,6 +152,7 @@ struct OperationResult: Codable, Identifiable, Equatable, Sendable {
     startedAt = try container.decode(Date.self, forKey: .startedAt)
     completedAt = try container.decodeIfPresent(Date.self, forKey: .completedAt)
     message = try container.decodeIfPresent(String.self, forKey: .message)
+    failureReason = try container.decodeIfPresent(OperationFailureReason.self, forKey: .failureReason)
     deviceKey = try container.decodeIfPresent(String.self, forKey: .deviceKey)
   }
 }

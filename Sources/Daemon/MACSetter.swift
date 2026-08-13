@@ -17,6 +17,23 @@ enum MACSettingFailure: Equatable, Sendable {
   case commandExecution(String)
   case commandRejected(exitCode: Int32, standardError: String)
   case readbackFailed(String)
+
+  var userFacingDescription: String {
+    switch self {
+    case .invalidTarget:
+      "The requested MAC address is not assignable."
+    case .missingHardwareAddress:
+      "macOS did not report a hardware MAC address for this interface."
+    case let .commandExecution(message):
+      "The MAC change command could not be executed: \(message)"
+    case let .commandRejected(exitCode, standardError):
+      standardError.isEmpty
+        ? "macOS rejected the MAC change (ifconfig exited with status \(exitCode))."
+        : "macOS rejected the MAC change: \(standardError)"
+    case let .readbackFailed(message):
+      "The MAC address could not be read back for verification: \(message)"
+    }
+  }
 }
 
 /// Applies an already-authorized MAC target to one interface.

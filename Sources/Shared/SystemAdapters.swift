@@ -197,7 +197,10 @@ struct SystemReadOnlyInterfaceProvider: ReadOnlyInterfaceProviding {
         currentMAC: state?.currentMAC,
         hardwareMAC: hardwareMAC,
         isActive: state?.isActive ?? false,
-        isWiFiAssociated: wifiInterface?.ssid() != nil || wifiInterface?.bssid() != nil,
+        // SSID/BSSID are privacy-gated by Location Services on modern macOS
+        // and may be nil while connected. interfaceMode is the public,
+        // non-identifying participation signal needed by the safety policy.
+        isWiFiAssociated: wifiInterface.map { $0.interfaceMode() != .none } ?? false,
         isDefaultRoute: defaultNames.contains(name),
         policy: .systemManaged,
         history: HistoryLedger(),

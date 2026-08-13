@@ -520,17 +520,34 @@ final class DaemonCoordinator: @unchecked Sendable {
       updated.lastOperation = result
       interfacesByID[interface.id] = updated
     case let .mismatch(_, requested, observed):
+      let associatedWiFiFailure = interface.kind == .wifi && interface.isWiFiAssociated
       result = OperationResult(
         id: operationID, interfaceID: interface.id, kind: kind, state: .failed,
         requestedAddress: requested, observedAddress: observed, startedAt: startedAt,
-        completedAt: Date(), message: "The address read back from macOS did not match."
+        completedAt: Date(),
+        message: associatedWiFiFailure
+          ? MACDancerError.associatedWiFiWriteRejected.localizedDescription
+          : "The address read back from macOS did not match the requested MAC address.",
+        failureReason: associatedWiFiFailure ? .associatedWiFiWriteRejected : nil
       )
       interfacesByID[interface.id]?.lastOperation = result
     case let .failure(_, requested, reason):
+      let associatedWiFiFailure: Bool
+      if interface.kind == .wifi,
+         interface.isWiFiAssociated,
+         case .commandRejected = reason {
+        associatedWiFiFailure = true
+      } else {
+        associatedWiFiFailure = false
+      }
       result = OperationResult(
         id: operationID, interfaceID: interface.id, kind: kind, state: .failed,
         requestedAddress: requested, observedAddress: interface.currentMAC, startedAt: startedAt,
-        completedAt: Date(), message: String(describing: reason)
+        completedAt: Date(),
+        message: associatedWiFiFailure
+          ? MACDancerError.associatedWiFiWriteRejected.localizedDescription
+          : reason.userFacingDescription,
+        failureReason: associatedWiFiFailure ? .associatedWiFiWriteRejected : nil
       )
       interfacesByID[interface.id]?.lastOperation = result
     }
