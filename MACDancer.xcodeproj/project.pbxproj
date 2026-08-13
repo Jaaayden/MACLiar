@@ -1,0 +1,550 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 71;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000060 /* Sources/App/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000050 /* Sources/App/Assets.xcassets */; };
+		A10000000000000000000061 /* Sources/App/Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000051 /* Sources/App/Localizable.xcstrings */; };
+		A10000000000000000000063 /* Sources/App/local.macdancer.MACDancer.daemon.plist in Copy Daemon Property List */ = {isa = PBXBuildFile; fileRef = A10000000000000000000052 /* Sources/App/local.macdancer.MACDancer.daemon.plist */; };
+		A10000000000000000000064 /* local.macdancer.MACDancer.daemon in Embed Daemon */ = {isa = PBXBuildFile; fileRef = A1000000000000000000000E /* local.macdancer.MACDancer.daemon */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A10000000000000000000065 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10000000000000000000058 /* CoreWLAN.framework */; };
+		A10000000000000000000066 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10000000000000000000059 /* SystemConfiguration.framework */; };
+		A10000000000000000000067 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1000000000000000000005A /* Security.framework */; };
+		A10000000000000000000068 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1000000000000000000005C /* ServiceManagement.framework */; };
+		A10000000000000000000069 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10000000000000000000058 /* CoreWLAN.framework */; };
+		A1000000000000000000006A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10000000000000000000059 /* SystemConfiguration.framework */; };
+		A1000000000000000000006B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1000000000000000000005A /* Security.framework */; };
+		A1000000000000000000006C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1000000000000000000005B /* IOKit.framework */; };
+		A1000000000000000000006D /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10000000000000000000058 /* CoreWLAN.framework */; };
+		A1000000000000000000006E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A10000000000000000000059 /* SystemConfiguration.framework */; };
+		A1000000000000000000006F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1000000000000000000005A /* Security.framework */; };
+		A10000000000000000000072 /* Sources/Daemon/ConfigurationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000005F /* Sources/Daemon/ConfigurationStore.swift */; };
+		A10000000000000000000073 /* Sources/Daemon/MACSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000074 /* Sources/Daemon/MACSetter.swift */; };
+		A10000000000000000000078 /* Sources/App/AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000075 /* Sources/App/AppDependencies.swift */; };
+		A10000000000000000000079 /* Sources/App/AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000076 /* Sources/App/AppModel.swift */; };
+		A1000000000000000000007A /* Sources/App/ReadOnlyRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000077 /* Sources/App/ReadOnlyRefreshController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A10000000000000000000010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A10000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10000000000000000000003;
+			remoteInfo = MACDancerDaemon;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A10000000000000000000043 /* Embed Daemon */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				A10000000000000000000064 /* local.macdancer.MACDancer.daemon in Embed Daemon */,
+			);
+			name = "Embed Daemon";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000044 /* Copy Daemon Property List */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchDaemons;
+			dstSubfolderSpec = 1;
+			files = (
+				A10000000000000000000063 /* Sources/App/local.macdancer.MACDancer.daemon.plist in Copy Daemon Property List */,
+			);
+			name = "Copy Daemon Property List";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A1000000000000000000000D /* MACDancer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MACDancer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1000000000000000000000E /* local.macdancer.MACDancer.daemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = local.macdancer.MACDancer.daemon; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1000000000000000000000F /* MACDancerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MACDancerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000050 /* Sources/App/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Sources/App/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000051 /* Sources/App/Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Sources/App/Localizable.xcstrings; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000052 /* Sources/App/local.macdancer.MACDancer.daemon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Sources/App/local.macdancer.MACDancer.daemon.plist; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000053 /* Sources/App/MACDancer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sources/App/MACDancer.entitlements; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000054 /* Sources/Daemon/MACDancerDaemon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sources/Daemon/MACDancerDaemon.entitlements; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000055 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		A10000000000000000000056 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		A10000000000000000000057 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		A10000000000000000000058 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
+		A10000000000000000000059 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A1000000000000000000005A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A1000000000000000000005B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		A1000000000000000000005C /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		A1000000000000000000005F /* Sources/Daemon/ConfigurationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Daemon/ConfigurationStore.swift; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000074 /* Sources/Daemon/MACSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/Daemon/MACSetter.swift; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000075 /* Sources/App/AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/App/AppDependencies.swift; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000076 /* Sources/App/AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/App/AppModel.swift; sourceTree = SOURCE_ROOT; };
+		A10000000000000000000077 /* Sources/App/ReadOnlyRefreshController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/App/ReadOnlyRefreshController.swift; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A10000000000000000000070 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				local.macdancer.MACDancer.daemon.plist,
+				Localizable.xcstrings,
+			);
+			target = A10000000000000000000002 /* MACDancer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A10000000000000000000008 /* Sources/App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (A10000000000000000000070 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Sources/App; sourceTree = "<group>"; };
+		A10000000000000000000009 /* Sources/Shared */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources/Shared; sourceTree = "<group>"; };
+		A1000000000000000000000A /* Sources/Daemon */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Sources/Daemon; sourceTree = "<group>"; };
+		A1000000000000000000000B /* Tests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000041 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000068 /* ServiceManagement.framework in Frameworks */,
+				A10000000000000000000067 /* Security.framework in Frameworks */,
+				A10000000000000000000066 /* SystemConfiguration.framework in Frameworks */,
+				A10000000000000000000065 /* CoreWLAN.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000046 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000006C /* IOKit.framework in Frameworks */,
+				A1000000000000000000006B /* Security.framework in Frameworks */,
+				A1000000000000000000006A /* SystemConfiguration.framework in Frameworks */,
+				A10000000000000000000069 /* CoreWLAN.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000048 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000006F /* Security.framework in Frameworks */,
+				A1000000000000000000006E /* SystemConfiguration.framework in Frameworks */,
+				A1000000000000000000006D /* CoreWLAN.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000005 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1000000000000000000000D /* MACDancer.app */,
+				A1000000000000000000000E /* local.macdancer.MACDancer.daemon */,
+				A1000000000000000000000F /* MACDancerCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000006 = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000008 /* Sources/App */,
+				A10000000000000000000009 /* Sources/Shared */,
+				A1000000000000000000000A /* Sources/Daemon */,
+				A1000000000000000000000B /* Tests */,
+				A10000000000000000000080 /* Test-only daemon core sources */,
+				A10000000000000000000081 /* Test-only app state sources */,
+				A1000000000000000000005E /* Build Resources */,
+				A1000000000000000000000C /* Configuration */,
+				A1000000000000000000005D /* Frameworks */,
+				A10000000000000000000005 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A1000000000000000000000C /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000055 /* Base.xcconfig */,
+				A10000000000000000000056 /* Debug.xcconfig */,
+				A10000000000000000000057 /* Release.xcconfig */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		A1000000000000000000005D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000058 /* CoreWLAN.framework */,
+				A10000000000000000000059 /* SystemConfiguration.framework */,
+				A1000000000000000000005A /* Security.framework */,
+				A1000000000000000000005B /* IOKit.framework */,
+				A1000000000000000000005C /* ServiceManagement.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A1000000000000000000005E /* Build Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000050 /* Sources/App/Assets.xcassets */,
+				A10000000000000000000051 /* Sources/App/Localizable.xcstrings */,
+				A10000000000000000000052 /* Sources/App/local.macdancer.MACDancer.daemon.plist */,
+				A10000000000000000000053 /* Sources/App/MACDancer.entitlements */,
+				A10000000000000000000054 /* Sources/Daemon/MACDancerDaemon.entitlements */,
+			);
+			name = "Build Resources";
+			sourceTree = "<group>";
+		};
+		A10000000000000000000080 /* Test-only daemon core sources */ = {
+			isa = PBXGroup;
+			children = (
+				A1000000000000000000005F /* Sources/Daemon/ConfigurationStore.swift */,
+				A10000000000000000000074 /* Sources/Daemon/MACSetter.swift */,
+			);
+			name = "Test-only daemon core sources";
+			sourceTree = "<group>";
+		};
+		A10000000000000000000081 /* Test-only app state sources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000075 /* Sources/App/AppDependencies.swift */,
+				A10000000000000000000076 /* Sources/App/AppModel.swift */,
+				A10000000000000000000077 /* Sources/App/ReadOnlyRefreshController.swift */,
+			);
+			name = "Test-only app state sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000002 /* MACDancer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000021 /* Build configuration list for PBXNativeTarget "MACDancer" */;
+			buildPhases = (
+				A10000000000000000000040 /* Sources */,
+				A10000000000000000000041 /* Frameworks */,
+				A10000000000000000000042 /* Resources */,
+				A10000000000000000000044 /* Copy Daemon Property List */,
+				A10000000000000000000043 /* Embed Daemon */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A10000000000000000000011 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A10000000000000000000008 /* Sources/App */,
+				A10000000000000000000009 /* Sources/Shared */,
+			);
+			name = MACDancer;
+			packageProductDependencies = (
+			);
+			productName = MACDancer;
+			productReference = A1000000000000000000000D /* MACDancer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A10000000000000000000003 /* MACDancerDaemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000022 /* Build configuration list for PBXNativeTarget "MACDancerDaemon" */;
+			buildPhases = (
+				A10000000000000000000045 /* Sources */,
+				A10000000000000000000046 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A10000000000000000000009 /* Sources/Shared */,
+				A1000000000000000000000A /* Sources/Daemon */,
+			);
+			name = MACDancerDaemon;
+			packageProductDependencies = (
+			);
+			productName = MACDancerDaemon;
+			productReference = A1000000000000000000000E /* local.macdancer.MACDancer.daemon */;
+			productType = "com.apple.product-type.tool";
+		};
+		A10000000000000000000004 /* MACDancerCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000023 /* Build configuration list for PBXNativeTarget "MACDancerCoreTests" */;
+			buildPhases = (
+				A10000000000000000000047 /* Sources */,
+				A10000000000000000000048 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				A10000000000000000000009 /* Sources/Shared */,
+				A1000000000000000000000B /* Tests */,
+			);
+			name = MACDancerCoreTests;
+			packageProductDependencies = (
+			);
+			productName = MACDancerCoreTests;
+			productReference = A1000000000000000000000F /* MACDancerCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					A10000000000000000000002 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					A10000000000000000000003 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					A10000000000000000000004 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+				};
+			};
+			buildConfigurationList = A10000000000000000000020 /* Build configuration list for PBXProject "MACDancer" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"zh-Hans",
+				Base,
+			);
+			mainGroup = A10000000000000000000006;
+			minimizedProjectReferenceProxies = 1;
+			productRefGroup = A10000000000000000000005 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000000000000000000002 /* MACDancer */,
+				A10000000000000000000003 /* MACDancerDaemon */,
+				A10000000000000000000004 /* MACDancerCoreTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000042 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000060 /* Sources/App/Assets.xcassets in Resources */,
+				A10000000000000000000061 /* Sources/App/Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000040 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000045 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A10000000000000000000047 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000072 /* Sources/Daemon/ConfigurationStore.swift in Sources */,
+				A10000000000000000000073 /* Sources/Daemon/MACSetter.swift in Sources */,
+				A10000000000000000000078 /* Sources/App/AppDependencies.swift in Sources */,
+				A10000000000000000000079 /* Sources/App/AppModel.swift in Sources */,
+				A1000000000000000000007A /* Sources/App/ReadOnlyRefreshController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A10000000000000000000011 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10000000000000000000003 /* MACDancerDaemon */;
+			targetProxy = A10000000000000000000010 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A10000000000000000000030 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000056 /* Debug.xcconfig */;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+			};
+			name = Debug;
+		};
+		A10000000000000000000031 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000057 /* Release.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		A10000000000000000000032 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000056 /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sources/App/MACDancer.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MACDancer;
+				INFOPLIST_KEY_CFBundleName = MACDancer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = local.macdancer.MACDancer;
+				PRODUCT_NAME = MACDancer;
+			};
+			name = Debug;
+		};
+		A10000000000000000000033 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000057 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Sources/App/MACDancer.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MACDancer;
+				INFOPLIST_KEY_CFBundleName = MACDancer;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = local.macdancer.MACDancer;
+				PRODUCT_NAME = MACDancer;
+			};
+			name = Release;
+		};
+		A10000000000000000000034 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000056 /* Debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Daemon/MACDancerDaemon.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				EXECUTABLE_NAME = local.macdancer.MACDancer.daemon;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0.0;
+				OTHER_CODE_SIGN_FLAGS = "--identifier local.macdancer.MACDancer.daemon";
+				PRODUCT_BUNDLE_IDENTIFIER = local.macdancer.MACDancer.daemon;
+				PRODUCT_NAME = MACDancerDaemon;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A10000000000000000000035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000057 /* Release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Daemon/MACDancerDaemon.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				EXECUTABLE_NAME = local.macdancer.MACDancer.daemon;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0.0;
+				OTHER_CODE_SIGN_FLAGS = "--identifier local.macdancer.MACDancer.daemon";
+				PRODUCT_BUNDLE_IDENTIFIER = local.macdancer.MACDancer.daemon;
+				PRODUCT_NAME = MACDancerDaemon;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A10000000000000000000036 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000056 /* Debug.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = local.macdancer.MACDancer.CoreTests;
+				PRODUCT_NAME = MACDancerCoreTests;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) MACDANCER_CORE_TESTS";
+			};
+			name = Debug;
+		};
+		A10000000000000000000037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A10000000000000000000057 /* Release.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = local.macdancer.MACDancer.CoreTests;
+				PRODUCT_NAME = MACDancerCoreTests;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) MACDANCER_CORE_TESTS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000000020 /* Build configuration list for PBXProject "MACDancer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000030 /* Debug */,
+				A10000000000000000000031 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000000021 /* Build configuration list for PBXNativeTarget "MACDancer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000032 /* Debug */,
+				A10000000000000000000033 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000000022 /* Build configuration list for PBXNativeTarget "MACDancerDaemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000034 /* Debug */,
+				A10000000000000000000035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000000023 /* Build configuration list for PBXNativeTarget "MACDancerCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000036 /* Debug */,
+				A10000000000000000000037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A10000000000000000000001 /* Project object */;
+}

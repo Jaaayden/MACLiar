@@ -1,0 +1,3 @@
+// Copy this file to Local.xcconfig and replace the placeholder locally.
+// The GUI and daemon must always use the same signing team.
+DEVELOPMENT_TEAM = YOUR_TEAM_ID
